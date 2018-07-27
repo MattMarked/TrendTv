@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using Microsoft.AspNetCore.Blazor.Browser.Interop
+@using Microsoft.JSInterop;
 @using System.Text;
 @inject HttpClient _httpClient
 @using ZapTube.Models;
@@ -9,7 +9,7 @@
 @functions
 {
     YouTubeModel model;
-    const string YOUTUBE_API_KEY = "YOUR_YOUTUBE_API_KEY";
+    string YOUTUBE_API_KEY = Environment.GetEnvironmentVariable("youtube_key");
     string text, err, currentVideoUrl = "", regionCode="IT";
     int currentVideo = 0, offset = 0, categoryId=0;
     const int MAX_NUMBER_OF_VIDEO = 50;
@@ -45,7 +45,7 @@
 
         if (autoRegionCode)
         {
-            string tempregionCode = RegisteredFunction.Invoke<string>("local");
+            string tempregionCode = await JSRuntime.Current.InvokeAsync<string>("myFunction.local");
             if (tempregionCode.Contains("-"))
                 regionCode = tempregionCode.Split('-')[1];
         }
@@ -139,7 +139,7 @@
     void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    }  
+    }
 }
 
 <div class="sidebar">

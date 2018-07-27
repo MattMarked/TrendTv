@@ -21,15 +21,14 @@
 
     <app>Loading...</app>
 
-    <script type="blazor-boot">
-    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
     <script>
-
-        Blazor.registerFunction('local', () => {
-            var userLang = navigator.language || navigator.userLanguage;
-
-            return userLang;
-        });
+        window.myFunction = {
+            local: function () {
+                var userLang = navigator.language || navigator.userLanguage;
+                return userLang;
+            }
+        };        
     </script>
 </body>
 </html>
