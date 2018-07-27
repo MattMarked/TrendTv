@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>zapTube</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122886032-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-122886032-1');
+    </script>
+
+    <app>Loading...</app>
+
+    <script type="blazor-boot">
+    </script>
+    <script>
+
+        Blazor.registerFunction('local', () => {
+            var userLang = navigator.language || navigator.userLanguage;
+
+            return userLang;
+        });
+    </script>
+</body>
+</html>
